@@ -19,6 +19,28 @@ import java.util.Iterator;
 @WebServlet("/showFile")
 public class ShowFile extends HttpServlet {
 
+    String orderNumber = "";
+    String idNumber = "";
+    String client = "";
+    String agent = "";
+    String delDate = "";
+    String quality = "";
+    String country = "";
+    String delType = "";
+    String finalDest = "";
+    String additionalInfo = "brak";
+
+    String posNr = "";
+    String articleCode = "";
+    String pcs = "";
+    String unit = "";
+    String additionalInformation = "";
+
+
+    int headerNextLastRowIndex = 0;
+    boolean additionalInfoSet = false;
+    int firstPosRowNumber;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
@@ -29,7 +51,8 @@ public class ShowFile extends HttpServlet {
 
         String[][] xlsContent = new String[0][];
 
-        File myFile = new File("\\\\10.1.10.100\\orders_2023\\" + fileName);
+//        File myFile = new File("\\\\10.1.10.100\\orders_2023\\" + fileName);
+        File myFile = new File("C:\\Kurs\\Production\\UK-C-0028-Z10.xls");
         FileInputStream fis = new FileInputStream(myFile);
         // Finds the workbook instance for XLSX file
         HSSFWorkbook myWorkBook = new HSSFWorkbook(fis);
@@ -55,16 +78,73 @@ public class ShowFile extends HttpServlet {
             xlsContent[xlsContent.length-1] = xlsRow;
         }
 
-        for (int i = 0; i < xlsContent.length; i++) {
 
+        for (int i = 0; i < xlsContent.length; i++) {
             for (int j = 0; j < xlsContent[i].length; j++) {
-//                if (xlsContent[i].length != 0) {
-                resp.getWriter().print(xlsContent[i][j] + " * ");
-//                } else {
-//                    break;
-//                }
+
+                if (xlsContent[i][j].contains("ORDER")) {
+                    orderNumber = xlsContent[i][j].split("\\s/\\s")[xlsContent[i][j].split("\\s/\\s").length-1];
+                }
+                if (xlsContent[i][j].contains("ID:")) {
+                    idNumber = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Client:")) {
+                    client = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Agent:")) {
+                    agent = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("delDate:")) {
+                    delDate = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Quantity:")) {
+                    quality = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Country:")) {
+                    country = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Delivery:")) {
+                    delType = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                }
+                if (xlsContent[i][j].contains("Final Dest.:")) {
+                    finalDest = xlsContent[i][j].split(":")[xlsContent[i][j].split(":").length-1];
+                    headerNextLastRowIndex = i+1;
+                }
+
+//                resp.getWriter().print(xlsContent[i][j] + " * ");
             }
-            resp.getWriter().println("<br>");
+
+            if (!additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && xlsContent[i].length > 0 && !xlsContent[i][0].equals("Pos")) {
+                additionalInfo = xlsContent[i][0];
+                additionalInfoSet = true;
+
+            }
+
+            if (xlsContent[i].length > 0) {
+                if (xlsContent[i][0].contains("Pos.") && !xlsContent[i][0].equals("")) {
+                    firstPosRowNumber = i + 1;
+                }
+            }
+//            for (int k = firstPosRowNumber; k < xlsContent.length; k++ ) {
+//                for (int j = 0; j < xlsContent[k].length; j++){
+//                    resp.getWriter().println(xlsContent[k][j]);
+//                }
+//            }
+
+
+
+//            resp.getWriter().println("<br>");
         }
+        resp.getWriter().println("orderNumber: " + orderNumber + "<br>" +
+                "idNumber: " + idNumber + "<br>" +
+                "client: " + client + "<br>" +
+                "agent: " + agent + "<br>" +
+                "delDate: " + delDate + "<br>" +
+                "quality: " + quality + "<br>" +
+                "country: " + country + "<br>" +
+                "delType: " + delType + "<br>" +
+                "finalDest: " + finalDest + "<br>" +
+                "additionalInfo: " + additionalInfo + "<br>");
+
     }
 }
