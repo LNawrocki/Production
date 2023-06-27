@@ -1,5 +1,7 @@
 package pl.ln.classes;
 
+import java.util.List;
+
 public class Order {
     private String orderNumber = "";
     private String orderID = "";
@@ -11,10 +13,17 @@ public class Order {
     private String delType = "";
     private String finalDest = "";
     private String additionalInfo = "";
-    private Pos[] pos;
+    private List<Pos> pos;
 
     public String getOrderNumber() {
         return orderNumber;
+    }
+
+    public List<Pos> getPos() {
+        return pos;
+    }
+    public void setPos(List<Pos> pos) {
+        this.pos = pos;
     }
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
@@ -73,12 +82,8 @@ public class Order {
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
     }
-    public Pos[] getPos() {
-        return pos;
-    }
-    public void setPos(Pos[] pos) {
-        this.pos = pos;
-    }
+
+
     @Override
     public String toString() {
         return "Order{" +

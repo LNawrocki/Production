@@ -9,7 +9,6 @@ public class CreateOrderFromArray {
         boolean additionalInfoSet = false;
 
 
-
         Order order = new Order();
 
         for (int i = 0; i < array.length; i++) {
@@ -27,10 +26,10 @@ public class CreateOrderFromArray {
                 if (array[i][j].contains("Agent:")) {
                     order.setAgent(array[i][j].split(":")[array[i][j].split(":").length - 1]);
                 }
-                if (array[i][j].contains("delDate:")) {
+                if (array[i][j].contains("Del.-Date:")) {
                     order.setDelDate(array[i][j].split(":")[array[i][j].split(":").length - 1]);
                 }
-                if (array[i][j].contains("Quantity:")) {
+                if (array[i][j].contains("Quality:")) {
                     order.setQuality(array[i][j].split(":")[array[i][j].split(":").length - 1]);
                 }
                 if (array[i][j].contains("Country:")) {
@@ -41,14 +40,18 @@ public class CreateOrderFromArray {
                 }
                 if (array[i][j].contains("Final Dest.:")) {
                     order.setFinalDest(array[i][j].split(":")[array[i][j].split(":").length - 1]);
-                    headerNextLastRowIndex = i+1;
+                    headerNextLastRowIndex = i + 1;
                 }
             }
-            if (!additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && array[i].length > 0 && !array[i][0].equals("Pos")) {
+
+            if (!additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && array[i].length > 0 && !array[i][0].equals("Pos.")) {
                 order.setAdditionalInfo(array[i][0]);
                 additionalInfoSet = true;
             }
         }
+
+        order.setPos(CreatePosFromArray.createPosFromArray(array));
+
         return order;
     }
 }
