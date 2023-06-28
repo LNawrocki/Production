@@ -7,6 +7,7 @@ import pl.ln.methods.ReadXlsToArray;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -17,6 +18,7 @@ public class Main {
 //        File folder = new File("C:\\Kurs\\Production\\xls_import");
         File folder = new File("\\\\10.1.10.100\\it\\orders\\");
         File[] listOfFiles = folder.listFiles();
+        Arrays.sort(listOfFiles);
         for (File file : listOfFiles) {
             if (file.getName().contains(".xls")) {
                 fileList.add(file.getName().replace("\\\\10.1.10.100\\it\\orders\\", ""));
