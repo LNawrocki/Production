@@ -7,6 +7,7 @@ public class CreateOrderFromArray {
 
         int headerNextLastRowIndex = 0;
         boolean additionalInfoSet = false;
+        boolean additionalInfoExist = true;
 
 
         Order order = new Order();
@@ -43,8 +44,12 @@ public class CreateOrderFromArray {
                     headerNextLastRowIndex = i + 1;
                 }
             }
+            if (!additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && array[i].length > 0 && array[i][0].equals("Pos.")) {
+                additionalInfoSet = false;
+                additionalInfoExist = false;
+            }
 
-            if (!additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && array[i].length > 0 && !array[i][0].equals("Pos.")) {
+            if (additionalInfoExist && !additionalInfoSet && headerNextLastRowIndex != 0 && i > headerNextLastRowIndex && array[i].length > 0 && !array[i][0].equals("Pos.")) {
                 order.setAdditionalInfo(array[i][0]);
                 additionalInfoSet = true;
             }
