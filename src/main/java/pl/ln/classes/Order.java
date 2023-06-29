@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Order {
     private String orderNumber = "";
-    private String orderID = "";
+    private String orderId = "";
     private String client = "";
     private String agent = "";
     private String delDate = "";
@@ -14,6 +14,24 @@ public class Order {
     private String finalDest = "";
     private String additionalInfo = "";
     private List<Pos> pos;
+    private String orderDate = "";
+    private String orderNo = "";
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
 
     public String getOrderNumber() {
         return orderNumber;
@@ -28,11 +46,11 @@ public class Order {
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
-    public String getOrderID() {
-        return orderID;
+    public String getOrderId() {
+        return orderId;
     }
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
     public String getClient() {
         return client;
@@ -88,7 +106,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderNumber='" + orderNumber + '\'' +
-                ", orderID='" + orderID + '\'' +
+                ", orderID='" + orderId + '\'' +
                 ", client='" + client + '\'' +
                 ", agent='" + agent + '\'' +
                 ", delDate='" + delDate + '\'' +

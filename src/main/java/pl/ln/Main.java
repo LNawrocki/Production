@@ -15,24 +15,29 @@ public class Main {
 
         List<String> fileList = new ArrayList<>();
 
-//        File folder = new File("C:\\Kurs\\Production\\xls_import");
-        File folder = new File("\\\\10.1.10.100\\it\\orders\\");
+//        String folderPath = "\\\\10.1.10.100\\it\\orders\\";
+        String folderPath = "C:\\Kurs\\Production\\xls_import\\";
+
+
+        File folder = new File(folderPath);
         File[] listOfFiles = folder.listFiles();
         Arrays.sort(listOfFiles);
         for (File file : listOfFiles) {
             if (file.getName().contains(".xls")) {
-                fileList.add(file.getName().replace("\\\\10.1.10.100\\it\\orders\\", ""));
+                fileList.add(file.getName().replace(folderPath, ""));
             }
         }
 
         List<Order> orderList = new ArrayList<>();
 
         for (String file : fileList) {
-            String pathToFile = "\\\\10.1.10.100\\it\\orders\\" + file;
+            String pathToFile = folderPath + file;
+//            String pathToFile = folderPath + "L-4009-Z1-PW-LUFTHANSA.xls";
             System.out.println(file);
             String[][] xlsContent = ReadXlsToArray.readXlsToArray(pathToFile);
             Order order = CreateOrderFromArray.createOrderFromArray(xlsContent);
             orderList.add(order);
+//        }
         }
         System.out.println(orderList);
     }
