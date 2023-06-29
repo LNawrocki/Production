@@ -7,10 +7,10 @@ public class Order {
     private String orderId = "";
     private String client = "";
     private String agent = "";
-    private String delDate = "";
+    private String deliveryDate = "";
     private String quality = "";
     private String country = "";
-    private String delType = "";
+    private String deliveryType = "";
     private String finalDest = "";
     private String additionalInfo = "";
     private List<Pos> pos;
@@ -64,11 +64,11 @@ public class Order {
     public void setAgent(String agent) {
         this.agent = agent;
     }
-    public String getDelDate() {
-        return delDate;
+    public String getDeliveryDate() {
+        return deliveryDate;
     }
-    public void setDelDate(String delDate) {
-        this.delDate = delDate;
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
     public String getQuality() {
         return quality;
@@ -82,11 +82,11 @@ public class Order {
     public void setCountry(String country) {
         this.country = country;
     }
-    public String getDelType() {
-        return delType;
+    public String getDeliveryType() {
+        return deliveryType;
     }
-    public void setDelType(String delType) {
-        this.delType = delType;
+    public void setDeliveryType(String deliveryType) {
+        this.deliveryType = deliveryType;
     }
     public String getFinalDest() {
         return finalDest;
@@ -109,10 +109,10 @@ public class Order {
                 ", orderID='" + orderId + '\'' +
                 ", client='" + client + '\'' +
                 ", agent='" + agent + '\'' +
-                ", delDate='" + delDate + '\'' +
+                ", delDate='" + deliveryDate + '\'' +
                 ", quality='" + quality + '\'' +
                 ", country='" + country + '\'' +
-                ", delType='" + delType + '\'' +
+                ", delType='" + deliveryType + '\'' +
                 ", finalDest='" + finalDest + '\'' +
                 ", additionalInfo='" + additionalInfo + '\'' +
                 ", pos=" + pos +

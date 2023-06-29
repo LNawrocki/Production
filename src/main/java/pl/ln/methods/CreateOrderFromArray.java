@@ -51,9 +51,9 @@ public class CreateOrderFromArray {
 
                 if (array[i][j].contains("Del.-Date:")) {
                     if (array[i][j].split(": ").length == 1) {
-                        order.setDelDate("");
+                        order.setDeliveryDate("");
                     } else {
-                        order.setDelDate(array[i][j].split(": ")[array[i][j].split(": ").length - 1]);
+                        order.setDeliveryDate(array[i][j].split(": ")[array[i][j].split(": ").length - 1]);
                     }
                 }
 
@@ -76,9 +76,9 @@ public class CreateOrderFromArray {
 
                 if (array[i][j].contains("Delivery:")) {
                     if (array[i][j].split(": ").length == 1) {
-                        order.setDelType("");
+                        order.setDeliveryType("");
                     } else {
-                        order.setDelType(array[i][j].split(": ")[array[i][j].split(": ").length - 1]);
+                        order.setDeliveryType(array[i][j].split(": ")[array[i][j].split(": ").length - 1]);
                     }
                 }
 
