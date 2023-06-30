@@ -39,14 +39,14 @@ public class Main {
             String[][] xlsContent = ReadXlsToArray.readXlsToArray(pathToFile);
             Order order = CreateOrderFromArray.createOrderFromArray(xlsContent);
 
-            orderList.add(order);
+//            orderList.add(order);
 //        }
 //        }
 //        System.out.println(orderList);
 
             OrderDao orderDao = new OrderDao();
 //            orderDao.create(order);
-            sleep(1000);
+//            sleep(700);
             Order[] lisOfOrders = orderDao.printAllOrders();
             System.out.println(lisOfOrders);
         }
