@@ -1,6 +1,6 @@
 package pl.ln.methods;
 
-import pl.ln.classes.Pos;
+import pl.ln.entity.Pos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,6 @@ public class CreatePosFromArray {
                 if (readPos && IS_POS_ROW.matcher(array[i][0]).find() && !IS_last_ROW.matcher(array[i][0]).matches()) {
                     posId++;
                     pos = new Pos();
-                    pos.setId(posId);
                     pos.setPos(array[i][0]);
                     pos.setArticleCode(array[i][1]);
                     pos.setPcs(Integer.parseInt(array[i][2].isBlank() ? "0" : array[i][2]));

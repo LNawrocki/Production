@@ -1,0 +1,37 @@
+CREATE DATABASE production
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+use production;
+
+create table orders (
+    order_id varchar(20) not null primary key,
+    order_number varchar(60),
+    agent varchar(50),
+    delivery_date varchar(20),
+    quality varchar(50),
+    country varchar(50),
+    delivery_type varchar(50),
+    final_dest varchar(50),
+    additional_info varchar(100),
+    pos_table_name varchar(20),
+    order_date varchar(20),
+    order_no varchar(50)
+);
+
+create table luminaires (
+    article_code varchar(50) not null primary key,
+    article_family varchar(20) not null,
+    man_hours float(3,2)
+);
+
+create table pos_table_name (
+    pos int auto_increment not null primary key,
+    article_code varchar(50) not null,
+    pcs int,
+    unit varchar(10),
+    additional_information varchar(200),
+    Barcode binary
+);
+
+SELECT pos, article_code, pcs, unit, additional_information FROM pos_table_name;

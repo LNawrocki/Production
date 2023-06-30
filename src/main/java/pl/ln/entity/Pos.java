@@ -1,20 +1,12 @@
-package pl.ln.classes;
+package pl.ln.entity;
 
 public class Pos {
-    private int id;
     private String pos = "";
     private String articleCode = "";
     private int pcs;
     private String unit = "";
     private String additionalInformation = "";
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPos() {
         return pos;

@@ -1,4 +1,6 @@
-package pl.ln.classes;
+package pl.ln.entity;
+
+import pl.ln.entity.Pos;
 
 import java.util.List;
 

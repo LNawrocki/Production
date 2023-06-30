@@ -1,6 +1,6 @@
 package pl.ln.methods;
 
-import pl.ln.classes.Order;
+import pl.ln.entity.Order;
 
 import java.util.regex.Pattern;
 
@@ -17,7 +17,7 @@ public class CreateOrderFromArray {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
 
-                if (array[i][j].contains("ORDER")) {
+                if (array[i][j].contains("ORDER /")) {
                     if (array[i][j].split("\\s/\\s").length == 1) {
                         order.setOrderNumber("");
                     } else {
