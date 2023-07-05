@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @WebServlet("/main")
 public class ordersList extends HttpServlet {
@@ -26,9 +23,9 @@ public class ordersList extends HttpServlet {
 
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM orders");
-            statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
 //        OrderDao orderDao = new OrderDao();

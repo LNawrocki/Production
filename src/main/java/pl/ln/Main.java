@@ -1,11 +1,16 @@
 package pl.ln;
 
+import pl.ln.classes.DbUtil;
 import pl.ln.entity.Order;
 import pl.ln.entity.OrderDao;
 import pl.ln.methods.CreateOrderFromArray;
 import pl.ln.methods.ReadXlsToArray;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +18,17 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class Main {
-//    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM orders");
+            ResultSet resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
 //
 //        List<String> fileList = new ArrayList<>();
 ////
@@ -51,4 +66,5 @@ public class Main {
 //            System.out.println(lisOfOrders);
 //        }
 //    }
-}
+
+//}
