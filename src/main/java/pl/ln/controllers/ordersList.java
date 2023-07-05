@@ -21,6 +21,13 @@ public class ordersList extends HttpServlet {
         resp.setContentType("text/html;charset=utf8");
         req.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
+
+        try{
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM orders");
             ResultSet resultSet = statement.executeQuery();
@@ -28,10 +35,10 @@ public class ordersList extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-//        OrderDao orderDao = new OrderDao();
-//        Order[] ordersList = orderDao.printAllOrders();
-//
-//        req.setAttribute("orderList", ordersList);
-//        getServletContext().getRequestDispatcher("/mainPage.jsp").forward(req, resp);
+        OrderDao orderDao = new OrderDao();
+        Order[] ordersList = orderDao.printAllOrders();
+
+        req.setAttribute("orderList", ordersList);
+        getServletContext().getRequestDispatcher("/mainPage.jsp").forward(req, resp);
     }
 }

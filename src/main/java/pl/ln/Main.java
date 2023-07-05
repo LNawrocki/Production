@@ -21,14 +21,14 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM orders");
-            ResultSet resultSet = statement.executeQuery();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
+//        try (Connection conn = DbUtil.getConnection()) {
+//            PreparedStatement statement = conn.prepareStatement("SELECT * FROM orders");
+//            ResultSet resultSet = statement.executeQuery();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//}
 //
 //        List<String> fileList = new ArrayList<>();
 ////
@@ -67,4 +67,5 @@ public class Main {
 //        }
 //    }
 
-//}
+    }
+}
