@@ -46,10 +46,10 @@
 </div>
 
 
-<table border="1">
+<table border="1px">
     <tr>
-        <td>Order</td>
         <td>ID</td>
+        <td>Order</td>
         <td>Client:</td>
         <td>Agent:</td>
         <td>Del.-Date:</td>
@@ -61,8 +61,8 @@
     </tr>
     <c:forEach var="order" items="${ordersList}">
     <tr>
-        <td>${order.getOrderNumber()}</td>
         <td>${order.getOrderId()}</td>
+        <td>${order.getOrderNumber()}</td>
         <td>${order.getClient()}</td>
         <td>${order.getAgent()}</td>
         <td>${order.getDeliveryDate()}</td>

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static com.mysql.cj.conf.PropertyKey.logger;
 
 public class OrderDao {
 
@@ -27,6 +31,7 @@ public class OrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(SELECT_ORDERS_QUERY);
             ResultSet resultSet = statement.executeQuery();
@@ -81,6 +86,7 @@ public class OrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return tempPos;
     }
 
