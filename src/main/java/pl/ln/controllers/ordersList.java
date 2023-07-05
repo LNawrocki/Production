@@ -31,10 +31,10 @@ public class ordersList extends HttpServlet {
             e.printStackTrace();
         }
 
-        OrderDao orderDao = new OrderDao();
-        Order[] ordersList = orderDao.printAllOrders();
-
-        req.setAttribute("orderList", ordersList);
-        getServletContext().getRequestDispatcher("/mainPage.jsp").forward(req, resp);
+//        OrderDao orderDao = new OrderDao();
+//        Order[] ordersList = orderDao.printAllOrders();
+//
+//        req.setAttribute("orderList", ordersList);
+//        getServletContext().getRequestDispatcher("/mainPage.jsp").forward(req, resp);
     }
 }
