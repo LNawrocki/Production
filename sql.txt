@@ -5,18 +5,19 @@ CREATE DATABASE production
 use production;
 
 create table orders (
-    order_id varchar(20) not null primary key,
-    order_number varchar(60),
-    agent varchar(50),
-    delivery_date varchar(20),
-    quality varchar(50),
-    country varchar(50),
-    delivery_type varchar(50),
-    final_dest varchar(50),
-    additional_info varchar(100),
-    pos_table_name varchar(20),
-    order_date varchar(20),
-    order_no varchar(50)
+                        order_id varchar(40) not null primary key,
+                        order_number varchar(100),
+                        client varchar(100),
+                        agent varchar(100),
+                        delivery_date varchar(100),
+                        quality varchar(100),
+                        country varchar(100),
+                        delivery_type varchar(100),
+                        final_dest varchar(100),
+                        additional_info varchar(100),
+                        pos_table_name varchar(100),
+                        order_date varchar(100),
+                        order_no varchar(40)
 );
 
 create table luminaires (

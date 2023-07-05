@@ -9,8 +9,8 @@ import java.util.Timer;
 public class OrderDao {
 
     private  static final String CREATE_ORDER_QUERY = "INSERT INTO orders (" +
-            "order_id, order_number, agent, delivery_date, quality, country, delivery_type, final_dest, additional_info, pos_table_name, order_date, order_no) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "order_id, order_number, client, agent, delivery_date, quality, country, delivery_type, final_dest, additional_info, pos_table_name, order_date, order_no) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private  static final String CREATE_POS_IN_ORDER_QUERY = "INSERT INTO pos_table_name (pos, article_code, pcs, unit, additional_information) VALUES (?, ?, ?, ?, ?)";
 //    private  static final String UPDATE_USER_QUERY = "UPDATE users SET email = ?, userName = ?, password = ? WHERE id = ?";
 //    public static final String READ_USER_QUERY = "SELECT * FROM users WHERE id = ?";
@@ -22,6 +22,11 @@ public class OrderDao {
     public Order[] printAllOrders() {
 
         Order[] tempOrder = new  Order[0];
+        try{
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(SELECT_ORDERS_QUERY);
             ResultSet resultSet = statement.executeQuery();
@@ -30,6 +35,7 @@ public class OrderDao {
                 Order order = new Order();
                 order.setOrderId(resultSet.getString("order_id"));
                 order.setOrderNumber(resultSet.getString("order_number"));
+                order.setClient(resultSet.getString("client"));
                 order.setAgent(resultSet.getString("agent"));
                 order.setDeliveryDate(resultSet.getString("delivery_date"));
                 order.setQuality(resultSet.getString("quality"));
@@ -52,6 +58,12 @@ public class OrderDao {
     public List<Pos> printAllPos() {
 
        List<Pos> tempPos = new ArrayList<>();
+
+       try{
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(SELECT_POS_IN_ORDER_QUERY);
@@ -119,20 +131,28 @@ public class OrderDao {
 //    }
 //
     public Order create(Order order) {
+
+        try{
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(CREATE_ORDER_QUERY, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, order.getOrderId());
             statement.setString(2, order.getOrderNumber());
-            statement.setString(3, order.getAgent());
-            statement.setString(4, order.getDeliveryDate());
-            statement.setString(5, order.getQuality());
-            statement.setString(6, order.getCountry());
-            statement.setString(7, order.getDeliveryType());
-            statement.setString(8, order.getFinalDest());
-            statement.setString(9, order.getAdditionalInfo());
-            statement.setString(10, order.getOrderId());
-            statement.setString(11, order.getOrderDate());
-            statement.setString(12, order.getOrderNo());
+            statement.setString(3, order.getClient());
+            statement.setString(4, order.getAgent());
+            statement.setString(5, order.getDeliveryDate());
+            statement.setString(6, order.getQuality());
+            statement.setString(7, order.getCountry());
+            statement.setString(8, order.getDeliveryType());
+            statement.setString(9, order.getFinalDest());
+            statement.setString(10, order.getAdditionalInfo());
+            statement.setString(11, order.getOrderId());
+            statement.setString(12, order.getOrderDate());
+            statement.setString(13, order.getOrderNo());
 
             statement.executeUpdate();
 

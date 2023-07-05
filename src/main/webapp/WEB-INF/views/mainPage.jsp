@@ -3,12 +3,12 @@
 <html>
 <head>
     <title>Lista zamówień</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/static/css/style.css"/>"/>
 </head>
 <body>
 <header class="header">
-    <div class="name"><h1>Łukasz Nawrocki</h1><br>
-        <h1>UsersCRUD application</h1>
+    <div class="name"><h1>Lightnet</h1><br>
+        <h1>Production plan</h1>
     </div>
     <div class="info-adress">
         <div class="info-contact">
@@ -18,19 +18,32 @@
         </div>
 
         <div class="info-contact">
-            <h1>Bielsko-Biała</h1>
+            <h1>Kobiernice</h1>
             <h1>.............</h1>
             <h1>.............</h1>
         </div>
     </div>
 
     <div class="info-contact">
-        <div><h1><a href="#">Linkedin</a></h1></div>
-        <div><h1><a href="#">Pracuj.pl</a></h1></div>
-        <div><h1><a href="#">Github</a></h1></div>
+        <div><h1><a href="#">####</a></h1></div>
+        <div><h1><a href="#">####</a></h1></div>
+        <div><h1><a href="#">####</a></h1></div>
+    </div>
+</header>
+<div class="main-menu-block">
+    <div class="menu-links">
+        <h1><a href="">Lista zamówień</a></h1>
     </div>
 
-</header>
+    <div class="menu-links">
+        <h1><a href="">Dodaj zamówienie</a></h1>
+    </div>
+
+    <div class="menu-links">
+        <h1><a href="">Edytuj zamówienie</a></h1>
+    </div>
+
+</div>
 
 
 <table border="1">
@@ -39,6 +52,7 @@
         <td>ID</td>
         <td>Client:</td>
         <td>Agent:</td>
+        <td>Del.-Date:</td>
         <td>Quality:</td>
         <td>Country:</td>
         <td>Delivery:</td>
@@ -51,14 +65,17 @@
         <td>${order.getOrderId()}</td>
         <td>${order.getClient()}</td>
         <td>${order.getAgent()}</td>
+        <td>${order.getDeliveryDate()}</td>
         <td>${order.getQuality()}</td>
         <td>${order.getCountry()}</td>
-        <td>${order.getDeliveryDate()}</td>
+        <td>${order.getDeliveryType()}</td>
         <td>${order.getFinalDest()}</td>
-        <td>${order.getAdditionalInformation()}</td>
+        <td>${order.getAdditionalInfo()}</td>
     </tr>
     </c:forEach>
 </table>
+
+
 
 
 </body>
