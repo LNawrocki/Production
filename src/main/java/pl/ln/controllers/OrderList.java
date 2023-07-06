@@ -1,9 +1,7 @@
 package pl.ln.controllers;
 
-import pl.ln.classes.DbUtil;
 import pl.ln.entity.Order;
 import pl.ln.entity.OrderDao;
-import pl.ln.methods.CreateOrderFromArray;
 import pl.ln.methods.ReadXlsToArray;
 
 import javax.servlet.ServletException;
@@ -14,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/main")
-public class ordersList extends HttpServlet {
+@WebServlet("/order/list")
+public class OrderList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
@@ -29,6 +26,7 @@ public class ordersList extends HttpServlet {
 
 
         List<String> fileList = new ArrayList<>();
+
 //        String folderPath = "\\\\10.1.10.100\\it\\orders\\";
         String folderPath = "C:\\Kurs\\Production\\xls_import\\";
 
@@ -41,24 +39,21 @@ public class ordersList extends HttpServlet {
             }
         }
 
-        List<Order> orderList = new ArrayList<>();
+
 
         for (String file : fileList) {
             String pathToFile = folderPath + file;
-//            String pathToFile = folderPath + "FR-B-0204-Z1-TA-OUDIN DENTAIRE.xls";
-            System.out.println(file);
+
+
             String[][] xlsContent = ReadXlsToArray.readXlsToArray(pathToFile);
-            Order order = CreateOrderFromArray.createOrderFromArray(xlsContent);
+            Order order = OrderDao.createOrderFromArray(xlsContent);
 
-            orderList.add(order);
-//        }
-
-//        System.out.println(orderList);
 
             OrderDao orderDao = new OrderDao();
-//            orderDao.create(order);
-          Order[] ordersList = orderDao.printAllOrders();
-          req.setAttribute("ordersList", ordersList);
-          getServletContext().getRequestDispatcher("/WEB-INF/views/mainPage.jsp").forward(req, resp);
-    }}
+            Order[] ordersList = orderDao.printAllOrders();
+
+            req.setAttribute("ordersList", ordersList);
+            getServletContext().getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+        }
+    }
 }

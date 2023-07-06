@@ -15,7 +15,7 @@ public class Order {
     private String deliveryType = "";
     private String finalDest = "";
     private String additionalInfo = "";
-    private List<Pos> pos;
+    private String pos;
     private String orderDate = "";
     private String orderNo = "";
 
@@ -39,10 +39,10 @@ public class Order {
         return orderNumber;
     }
 
-    public List<Pos> getPos() {
+    public String getPos() {
         return pos;
     }
-    public void setPos(List<Pos> pos) {
+    public void setPos(String pos) {
         this.pos = pos;
     }
     public void setOrderNumber(String orderNumber) {

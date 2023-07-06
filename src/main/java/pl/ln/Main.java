@@ -3,9 +3,7 @@ package pl.ln;
 import pl.ln.classes.DbUtil;
 import pl.ln.entity.Order;
 import pl.ln.entity.OrderDao;
-import pl.ln.methods.CreateOrderFromArray;
 import pl.ln.methods.ReadXlsToArray;
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
